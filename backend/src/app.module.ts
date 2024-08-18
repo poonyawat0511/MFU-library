@@ -8,6 +8,7 @@ import { join } from 'path';
 import { MulterModule } from '@nestjs/platform-express';
 import { storageConfig } from './app/config/storage.config';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       ],
     }),
     MulterModule.register({ storage: storageConfig }),
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
