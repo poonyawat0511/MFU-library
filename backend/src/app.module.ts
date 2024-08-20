@@ -9,6 +9,8 @@ import { MulterModule } from '@nestjs/platform-express';
 import { storageConfig } from './app/config/storage.config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { BooksModule } from './books/books.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import { BooksModule } from './books/books.module';
     }),
     MulterModule.register({ storage: storageConfig }),
     BooksModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
