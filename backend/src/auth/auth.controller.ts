@@ -10,6 +10,8 @@ import {
   UseGuards,
   Res,
   BadRequestException,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
@@ -33,8 +35,8 @@ export class AuthController {
   }
 
   @Post('refresh')
-  async refresh(@Request() req){
-    return this.authService.refreshToken(req.user)
+  async refresh(@Request() req) {
+    return this.authService.refreshToken(req.user);
   }
 
   @Post('reset-password')
@@ -42,9 +44,20 @@ export class AuthController {
     const { username, email, newPassword } = resetPasswordDto;
 
     if (!username || !email || !newPassword) {
-      throw new BadRequestException('Username, email, and new password are required');
+      throw new BadRequestException(
+        'Username, email, and new password are required',
+      );
     }
 
     return await this.authService.resetPassword(username, email, newPassword);
+  }
+
+  @Post('logout')
+  async logout(@Res({ passthrough: true }) res) {
+    // Clear the access token cookie
+    res.clearCookie('access_token', { httpOnly: true });
+    return {
+      message: 'Logout successful',
+    };
   }
 }
