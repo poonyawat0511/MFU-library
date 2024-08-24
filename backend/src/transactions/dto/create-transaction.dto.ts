@@ -1,5 +1,12 @@
-import { IsIn, IsMongoId, IsNotEmpty, IsString } from "class-validator";
-import { TransactionsType } from "../enums/transactions-type.enum";
+import {
+  IsDateString,
+  IsIn,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { TransactionsType } from '../enums/transactions-type.enum';
 
 export class CreateTransactionDto {
   @IsNotEmpty()
@@ -12,8 +19,17 @@ export class CreateTransactionDto {
 
   @IsString()
   @IsIn(['BORROW', 'RETURN'])
-  type: TransactionsType;
+  status: TransactionsType;
 
-  timestamp: Date;
+  @IsOptional()
+  @IsDateString()
+  dueDate: Date;
 
+  @IsOptional()
+  @IsDateString()
+  borrowDate: Date;
+
+  @IsOptional()
+  @IsDateString()
+  timeStamp: Date;
 }
