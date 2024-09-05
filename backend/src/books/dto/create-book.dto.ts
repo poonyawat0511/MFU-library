@@ -1,11 +1,14 @@
 import { Type } from "class-transformer";
 import {
+  IsIn,
   IsNotEmpty,
   IsObject,
   IsOptional,
+  IsString,
   ValidateNested,
 } from "class-validator";
 import { BookDTO } from "./book.dto";
+import { BookStatus } from "../enums/book-status.enum";
 
 export class CreateBookDto {
   @IsObject()
@@ -20,10 +23,13 @@ export class CreateBookDto {
 
   bookImage: string;
 
-  @IsObject()
-  @ValidateNested()
-  @Type(() => BookDTO)
-  type: BookDTO;
+  @IsNotEmpty()
+  @IsOptional()
+  category: string;
+
+  @IsString()
+  @IsIn(["ready", "not ready"])
+  status: BookStatus;
 
   @IsOptional()
   @IsNotEmpty()

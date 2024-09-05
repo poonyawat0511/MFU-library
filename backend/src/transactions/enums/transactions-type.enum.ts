@@ -1,4 +1,4 @@
 export enum TransactionsType {
-  borrow = 'BORROW',
-  return = 'RETURN',
+  borrow = "borrow",
+  return = "return",
 }

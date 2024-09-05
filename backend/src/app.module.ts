@@ -12,6 +12,11 @@ import { BooksModule } from './books/books.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { BookCategoriesModule } from './book-categories/book-categories.module';
+import { RoomsModule } from './rooms/rooms.module';
+import { RoomTypesModule } from './room-types/room-types.module';
+import { ReservationsModule } from './reservations/reservations.module';
+import { RenewsModule } from './renews/renews.module';
 
 @Module({
   imports: [
@@ -39,6 +44,11 @@ import { TransactionsModule } from './transactions/transactions.module';
     AuthModule,
     UsersModule,
     TransactionsModule,
+    BookCategoriesModule,
+    RoomsModule,
+    RoomTypesModule,
+    ReservationsModule,
+    RenewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
